@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script type="text/javascript">
+
+
+
+
+
+       function deleteStudent(id) {
+            $.ajax({
+                url: "/delete/" + id,
+                method: "GET"
+            }).done(function () {
+                $("#object_" + id).remove();
+                console.log("Deleted");
+            });
+        }
+
+
+
+    </script>
+
+
+  </head>
+
+  <body>
+  <form action="/" method="POST">
+      <div>Name - <input type="text" name="name" value="chaitu"></div>
+      <div>Age -  <input type="number" name="age" value="26"></div>
+      <div><button id="add">Submit</button></div>
+  </form>
+
+  <% tests.forEach(function(test){%>
+  <div id="object_<%=test._id%>">
+    <h2>Name - <span id="name"><%= test.name %></span></h2>
+    <h2>Age - <span id="age"><%= test.age %></span></h2>
+    <button onclick="deleteStudent('<%=test._id%>')">Delete</button>
+
+  </div>
+  <% }); %>
+  </body>
+
+
+
+</html>
